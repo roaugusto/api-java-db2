@@ -1,0 +1,16 @@
+/home/db2inst1/sql/DBTICKETS.sql
+SELECT 'Hello from DBTICKETS.sql' FROM SYSIBM.DUAL
+
+1                       
+------------------------
+Hello from DBTICKETS.sql
+
+  1 record(s) selected.
+
+
+CREATE TABLE DBTICKETS (NUMTICKET    VARCHAR(9)     NOT NULL, DESCRIPTION  VARCHAR(100) NOT NULL, EVENTDATE    TIMESTAMP, PRIMARY KEY(NUMTICKET))
+DB20000I  The SQL command completed successfully.
+
+/home/db2inst1/sql/PROC_DBTICKETS.sql
+
+DB21007E  End of file reached while reading the command.
