@@ -77,7 +77,7 @@ class TicketRepositoryImpl implements TicketRepository {
 		sql.append("SELECT NUMTICKET, DESCRIPTION, EVENTDATE ")
 			.append("FROM DBTICKETS");
 		
-		return this.jdbcTemplate.query(sql.toString(), new BeanPropertyRowMapper<>(Ticket.class));
+		return this.jdbcTemplate.query(sql.toString(), new TicketSetExtractData());
 
 	}
 

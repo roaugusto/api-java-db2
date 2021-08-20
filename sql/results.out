@@ -12,5 +12,66 @@ CREATE TABLE DBTICKETS (NUMTICKET    VARCHAR(9)     NOT NULL, DESCRIPTION  VARCH
 DB20000I  The SQL command completed successfully.
 
 /home/db2inst1/sql/PROC_DBTICKETS.sql
+CREATE PROCEDURE DB2INST1.PTICKETS (
+	IN  IN_NUMTICKET    CHAR(9),
+	IN  IN_DESCRIPTION  CHAR(100),
+	IN  IN_EVENTDATE    CHAR(26),
+	OUT OUT_SQLCODE     INTEGER,
+	OUT OUT_CODE        INTEGER,
+	OUT OUT_MSG         CHAR(160))
+--
+	COMMIT ON RETURN NO
+	RESULT SET 1
+--
+P1: BEGIN
+--
+  DECLARE SQLCODE INTEGER DEFAULT 0
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0104N  An unexpected token "END-OF-STATEMENT" was found following "DE 
+INTEGER DEFAULT 0".  Expected tokens may include:  "<psm_semicolon>".  LINE 
+NUMBER=14.  SQLSTATE=42601
 
-DB21007E  End of file reached while reading the command.
+DECLARE CODRET  INTEGER DEFAULT 0
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0104N  An unexpected token "0" was found following "RET  INTEGER DEFAULT".  
+Expected tokens may include:  "END-OF-STATEMENT".  LINE NUMBER=1.  
+SQLSTATE=42601
+
+DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET CODRET = SQLCODE
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0104N  An unexpected token "<space>" was found following "CONTINUE".  
+Expected tokens may include:  "HANDLER".  LINE NUMBER=1.  SQLSTATE=42601
+
+INSERT INTO DBTICKETS (NUMTICKET ,DESCRIPTION ,EVENTDATE) VALUES (IN_NUMTICKET ,IN_DESCRIPTION ,IN_EVENTDATE)
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0206N  "IN_NUMTICKET" is not valid in the context where it is used.  
+SQLSTATE=42703
+
+SET OUT_SQLCODE = CODRET
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0206N  "OUT_SQLCODE" is not valid in the context where it is used.  
+SQLSTATE=42703
+
+SET OUT_CODE = 0
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0206N  "OUT_CODE" is not valid in the context where it is used.  
+SQLSTATE=42703
+
+SET OUT_MSG = 'PROCESSAMENTO FINALIZADO'
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0206N  "OUT_MSG" is not valid in the context where it is used.  
+SQLSTATE=42703
+
+END P1
+DB21034E  The command was processed as an SQL statement because it was not a 
+valid Command Line Processor command.  During SQL processing it returned:
+SQL0104N  An unexpected token "END-OF-STATEMENT" was found following "END P1". 
+Expected tokens may include:  "JOIN <joined_table>".  SQLSTATE=42601
+
