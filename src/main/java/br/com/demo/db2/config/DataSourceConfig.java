@@ -10,6 +10,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import com.zaxxer.hikari.HikariDataSource;
 
+import br.com.demo.db2.util.Crypt;
+
 @Configuration
 public class DataSourceConfig {
 
@@ -25,10 +27,13 @@ public class DataSourceConfig {
 //		Integer maxPoolSize = Integer.parseInt(env.getProperty(""));
 		HikariDataSource dataSource = new HikariDataSource();
 		
+		String userDecoded = Crypt.Decode(env.getProperty("api.jdbc.user"));	
+		String passwordDecoded = Crypt.Decode(env.getProperty("api.jdbc.password"));
+				
 		dataSource.setJdbcUrl(env.getProperty("api.jdbc.url"));
 		dataSource.setDriverClassName(env.getProperty("api.jdbc.driver"));
-		dataSource.setUsername(env.getProperty("api.jdbc.user"));
-		dataSource.setPassword(env.getProperty("api.jdbc.password"));
+		dataSource.setUsername(userDecoded);
+		dataSource.setPassword(passwordDecoded);
 		
 //		dataSource.setConnectionTestQuery(env.getProperty("api.jdbc.test"));
 //		dataSource.setMaximumPoolSize(maxPoolSize);
